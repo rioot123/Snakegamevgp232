@@ -1,0 +1,14 @@
+c:\users\akagi\source\repos\Snake\obj\Debug\Snake.csprojResolveAssemblyReference.cache
+c:\users\akagi\source\repos\Snake\obj\Debug\MainWindow.baml
+c:\users\akagi\source\repos\Snake\obj\Debug\MainWindow.g.cs
+c:\users\akagi\source\repos\Snake\obj\Debug\App.g.cs
+c:\users\akagi\source\repos\Snake\obj\Debug\Snake_MarkupCompile.cache
+c:\users\akagi\source\repos\Snake\obj\Debug\Snake.g.resources
+c:\users\akagi\source\repos\Snake\obj\Debug\Snake.Properties.Resources.resources
+c:\users\akagi\source\repos\Snake\obj\Debug\Snake.csproj.GenerateResource.Cache
+c:\users\akagi\source\repos\Snake\obj\Debug\Snake.csproj.CoreCompileInputs.cache
+c:\users\akagi\source\repos\Snake\bin\Debug\Snake.exe.config
+c:\users\akagi\source\repos\Snake\bin\Debug\Snake.exe
+c:\users\akagi\source\repos\Snake\bin\Debug\Snake.pdb
+c:\users\akagi\source\repos\Snake\obj\Debug\Snake.exe
+c:\users\akagi\source\repos\Snake\obj\Debug\Snake.pdb
