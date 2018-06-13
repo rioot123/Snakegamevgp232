@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
+
 namespace Snakes
 {
-    class Snake
+    class GameMap
     {
         public double x, y;
         public Rectangle rec = new Rectangle();
-        public Snake(double x, double y)
+        public GameMap(double x, double y)
         {
             this.x = x;
             this.y = y;
         }
-        public void setsnakeposition()
+        public void setwallposition()
         {
             rec.Width = rec.Height = 10;
-            rec.Fill = Brushes.HotPink;
+            rec.Fill = Brushes.Black;
             Canvas.SetLeft(rec, x);
             Canvas.SetTop(rec, y);
         }
