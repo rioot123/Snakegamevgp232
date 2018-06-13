@@ -20,30 +20,31 @@ namespace Snakes
 
     public partial class MainWindow : Window
     {
-        DispatcherTimer time;
-        List<Snake> snakebody;
-        List<Food> food;
-        List<GameMap> map; 
+        DispatcherTimer time;//dispatchertime object
+        List<Snake> snakebody;//snake list
+        List<Food> food;//food list
+        List<GameMap> map; //map list
         Random rd = new Random();
         double x = 100;
         double y = 100;
-        int direction = 0;
+        int direction = 0;//directions
         int left = 4;
         int right = 6;
         int up = 8;
         int down = 2;
-        int score = 0;
-        int count = 0;
+        int score = 0;//score
+        int count = 0;//count
         bool editx = false;
-        public MainWindow()
+        string xda = "You Lose! \nFinal Score: ";
+        public MainWindow()//mmain window
         {
-            InitializeComponent();
-            time = new DispatcherTimer();
-            map = new List<GameMap>();
-            snakebody = new List<Snake>();
-            food = new List<Food>();
-            snakebody.Add(new Snake(x, y));
-            food.Add(new Food(rd.Next(0, 37) * 10, rd.Next(0, 35) * 10));
+            InitializeComponent();//initializes components
+            time = new DispatcherTimer();//dispatcher time
+            map = new List<GameMap>();// new map list
+            snakebody = new List<Snake>();//new snake list
+            food = new List<Food>();//new food list
+            snakebody.Add(new Snake(x, y));//adds snake
+            food.Add(new Food(rd.Next(0, 37) * 10, rd.Next(0, 35) * 10));//adds food
             time.Interval = new TimeSpan(0, 0, 0, 0, 50);//edit to change difficulty higher number = easier
             time.Tick += time_Tick;
         }
@@ -67,7 +68,7 @@ namespace Snakes
 
         void addsnakeincanvas()//Snek.
         {
-            foreach (Snake snake in snakebody)
+            foreach (Snake snake in snakebody)//for every snake in snakebody add a snake
             {
                 snake.setsnakeposition();
                 mycanvas.Children.Add(snake.rec);
@@ -81,7 +82,7 @@ namespace Snakes
             mycanvas.Children.Insert(0, food[0].ell);
         }
 
-        void addwallincanvas()
+        void addwallincanvas()//adds wall
         {
             foreach(GameMap gamemap in map)
             {if (mycanvas != null)
@@ -92,29 +93,24 @@ namespace Snakes
                 mycanvas.Children.Add(gamemap.rec);
             }
         }
-        void getwall()
+        void getwall()//gets wall
         {      
                 Point p = Mouse.GetPosition(mycanvas);
-            /*           p.X = p.X / 10;
-                       p.Y = p.Y / 10;
-
-                       p.X = p.X * 10;
-                       p.Y = p.Y * 10;*/
             p.X = p.X - (p.X % 10);
             p.Y = p.Y - (p.Y % 10);
             map.Add(new GameMap(p.X, p.Y));
         }
 
-        void editmode()
+        void editmode()//editmode
         {
-             getwall();
+             getwall();//gets wall
         }
 
         void time_Tick(object sender, EventArgs e)//ゲームスタート！
         {
             if (editx == false)
             {
-                if (direction != 0)
+                if (direction != 0)//snakes
                 {
                     for (int i = snakebody.Count - 1; i > 0; i--)
                     {
@@ -155,7 +151,8 @@ namespace Snakes
                 if (snakebody[0].x > 370 || snakebody[0].y > 350 || snakebody[0].x < 0 || snakebody[0].y < 0)//Border death
                 {
                     time.Stop();
-                    System.Windows.Forms.MessageBox.Show("You Lose!", "Loser!");
+                    xda += score;
+                    System.Windows.Forms.MessageBox.Show(xda, "Loser!");
                     this.Close();
 
                 }
@@ -166,7 +163,8 @@ namespace Snakes
                     if (snakebody[0].x == snakebody[i].x && snakebody[0].y == snakebody[i].y)
                     {
                         time.Stop();
-                        System.Windows.Forms.MessageBox.Show("You Lose!", "Loser!");
+                        xda += score;
+                        System.Windows.Forms.MessageBox.Show(xda, "Loser!");
                         this.Close();
                     }
                 }
@@ -175,13 +173,14 @@ namespace Snakes
                     if (snakebody[0].x == map[j].x && snakebody[0].y == map[j].y)
                     {
                         time.Stop();
-                        System.Windows.Forms.MessageBox.Show("You Lose!", "Loser!");
+                        xda += score;
+                        System.Windows.Forms.MessageBox.Show(xda, "Loser!");
                         this.Close();
                     }
                 }
 
 
-                for (int i = 0; i < mycanvas.Children.Count; i++)
+                for (int i = 0; i < mycanvas.Children.Count; i++)//removes children
                 {
                     if (mycanvas.Children[i] is Rectangle)
                         count++;
@@ -191,10 +190,10 @@ namespace Snakes
 
                 mycanvas.Children.RemoveRange(1, count);
                 count = 0;
-                addsnakeincanvas();
+                addsnakeincanvas();//adds snake in canvas
 
             }
-            addwallincanvas();
+            addwallincanvas();//adds wall in canvas
 
         }
 
@@ -212,14 +211,14 @@ namespace Snakes
         }
 
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)//ゲームスタート！
+        private void Window_Loaded(object sender, RoutedEventArgs e)//print canvas on load
         {
             addsnakeincanvas();
             addfoodincanvas();
             time.Start();
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)//event mouse click
         {
             if (e.LeftButton == MouseButtonState.Pressed && editx == true)
             {
